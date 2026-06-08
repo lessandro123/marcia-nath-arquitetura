@@ -3,3 +3,5 @@
 node_modules/
 node_modules.fat32-stale/
 npm-debug.log*
+
+.vercel
