@@ -3,7 +3,7 @@ import LegacyPage from "@/components/LegacyPage";
 import { getLegacyPage, getPageMetadata, pageSlugs, resolvePageKey } from "@/lib/legacy-pages";
 
 export function generateStaticParams() {
-  return [...pageSlugs, "index.html", ...pageSlugs.map((slug) => `${slug}.html`)].map((slug) => ({ slug }));
+  return pageSlugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }) {

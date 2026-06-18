@@ -4362,3 +4362,87 @@ h3 {
     padding: 0 0 52px;
   }
 }
+
+.story-page--residential .story-hero-inner,
+.story-page--commercial .story-hero-inner,
+.story-page--facades .story-hero-inner,
+.story-page--inspiration .story-hero-inner {
+  position: static;
+  inset: auto;
+  z-index: auto;
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 42px 0 0;
+  color: var(--ink);
+  text-align: center;
+}
+
+.story-page--residential .story-hero-inner .story-back,
+.story-page--commercial .story-hero-inner .story-back,
+.story-page--facades .story-hero-inner .story-back,
+.story-page--inspiration .story-hero-inner .story-back,
+.story-page--residential .story-hero-inner .story-brand,
+.story-page--commercial .story-hero-inner .story-brand,
+.story-page--facades .story-hero-inner .story-brand,
+.story-page--inspiration .story-hero-inner .story-brand,
+.story-page--residential .story-hero-inner .story-lead,
+.story-page--commercial .story-hero-inner .story-lead,
+.story-page--facades .story-hero-inner .story-lead,
+.story-page--inspiration .story-hero-inner .story-lead {
+  color: inherit;
+  text-shadow: none;
+}
+
+.story-page--residential .story-hero-inner .story-back,
+.story-page--commercial .story-hero-inner .story-back,
+.story-page--facades .story-hero-inner .story-back,
+.story-page--inspiration .story-hero-inner .story-back {
+  color: var(--olive);
+}
+
+.story-page--residential .story-hero-inner .story-brand,
+.story-page--commercial .story-hero-inner .story-brand,
+.story-page--facades .story-hero-inner .story-brand,
+.story-page--inspiration .story-hero-inner .story-brand {
+  margin-top: 12px;
+}
+
+.story-page--residential .story-hero-inner h1,
+.story-page--commercial .story-hero-inner h1,
+.story-page--facades .story-hero-inner h1,
+.story-page--inspiration .story-hero-inner h1 {
+  color: var(--coffee);
+}
+
+.story-page--residential .story-hero-inner .story-lead,
+.story-page--commercial .story-hero-inner .story-lead,
+.story-page--facades .story-hero-inner .story-lead,
+.story-page--inspiration .story-hero-inner .story-lead {
+  max-width: 720px;
+  margin: 18px auto 0;
+}
+
+.story-page--residential .story-hero::after,
+.story-page--commercial .story-hero::after,
+.story-page--facades .story-hero::after,
+.story-page--inspiration .story-hero::after {
+  display: none;
+  content: none;
+}
+
+@media (max-width: 900px) {
+  .story-page--residential .story-hero-inner,
+  .story-page--commercial .story-hero-inner,
+  .story-page--facades .story-hero-inner,
+  .story-page--inspiration .story-hero-inner {
+    width: calc(100% - 32px);
+    padding-top: 28px;
+  }
+
+  .story-page--residential .story-hero-inner .story-lead,
+  .story-page--commercial .story-hero-inner .story-lead,
+  .story-page--facades .story-hero-inner .story-lead,
+  .story-page--inspiration .story-hero-inner .story-lead {
+    margin-top: 14px;
+  }
+}

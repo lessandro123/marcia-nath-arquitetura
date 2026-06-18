@@ -24,8 +24,7 @@ const nextBin = useRuntimeMirror ? runtimeNextBin : localNextBin;
 const directories = ["app", "components", "lib", "public"];
 const files = [
   "package.json",
-  "jsconfig.json",
-  ...fs.readdirSync(projectRoot).filter((file) => file.endsWith(".html"))
+  "jsconfig.json"
 ];
 
 const watchers = [];
@@ -52,8 +51,57 @@ function syncPath(source, destination) {
     return;
   }
 
+  if (!shouldCopyFile(source, destination, stats)) {
+    return;
+  }
+
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.copyFileSync(source, destination);
+  fs.utimesSync(destination, stats.atime, stats.mtime);
+}
+
+function shouldCopyFile(source, destination, sourceStats = fs.statSync(source)) {
+  if (!fs.existsSync(destination)) {
+    return true;
+  }
+
+  const destinationStats = fs.statSync(destination);
+  return (
+    destinationStats.size !== sourceStats.size ||
+    Math.trunc(destinationStats.mtimeMs) !== Math.trunc(sourceStats.mtimeMs)
+  );
+}
+
+function syncDirectory(sourceDirectory, destinationDirectory) {
+  fs.mkdirSync(destinationDirectory, { recursive: true });
+
+  const sourceEntries = new Map();
+  for (const entry of fs.readdirSync(sourceDirectory, { withFileTypes: true })) {
+    sourceEntries.set(entry.name, entry);
+    const source = path.join(sourceDirectory, entry.name);
+    const destination = path.join(destinationDirectory, entry.name);
+
+    if (entry.isDirectory()) {
+      syncDirectory(source, destination);
+      continue;
+    }
+
+    if (entry.isFile()) {
+      syncPath(source, destination);
+    }
+  }
+
+  if (!fs.existsSync(destinationDirectory)) {
+    return;
+  }
+
+  for (const entry of fs.readdirSync(destinationDirectory, { withFileTypes: true })) {
+    if (sourceEntries.has(entry.name)) {
+      continue;
+    }
+
+    fs.rmSync(path.join(destinationDirectory, entry.name), { recursive: true, force: true });
+  }
 }
 
 function queueSync(source, destination) {
@@ -104,14 +152,6 @@ function watchRuntimeMirror() {
     });
   }
 
-  watchers.push(
-    fs.watch(projectRoot, (_eventType, filename) => {
-      const relative = filename?.toString();
-      if (!relative?.endsWith(".html")) return;
-      queueSync(path.join(projectRoot, relative), path.join(runtimeSite, relative));
-    })
-  );
-
   console.log("Watching project files for live synchronization...");
 }
 
@@ -123,10 +163,7 @@ if (useRuntimeMirror) {
   fs.mkdirSync(runtimeSite, { recursive: true });
 
   for (const directory of directories) {
-    fs.cpSync(path.join(projectRoot, directory), path.join(runtimeSite, directory), {
-      recursive: true,
-      force: true
-    });
+    syncDirectory(path.join(projectRoot, directory), path.join(runtimeSite, directory));
   }
 
   for (const file of files) {
