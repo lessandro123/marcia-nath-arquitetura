@@ -1,0 +1,30 @@
+
+> marcia-nath-arquitetura@1.0.0 dev
+> node scripts/run-next.mjs dev
+
+Local Next.js installation is incomplete. Syncing project files to C:\Users\Renan\AppData\Local\MarciaNathNext\site-dev...
+Project files synced. Starting Next.js...
+Watching project files for live synchronization...
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3002
+
+ ✓ Starting...
+ ✓ Ready in 2.5s
+ ○ Compiling /[slug] ...
+ ✓ Compiled /[slug] in 881ms (456 modules)
+ GET /residencial 200 in 1747ms
+ GET /comercial 200 in 40ms
+ GET /fachadas 200 in 34ms
+ GET /inspire-se 200 in 45ms
+ GET /residencial 200 in 57ms
+ GET /comercial 200 in 21ms
+ GET /fachadas 200 in 33ms
+ GET /inspire-se 200 in 19ms
+ GET /sobre 200 in 44ms
+ ✓ Compiled in 55ms
+ ✓ Compiled / in 481ms (451 modules)
+ GET / 200 in 669ms
+ ✓ Compiled /[slug] in 107ms (237 modules)
+ GET /artigos 200 in 268ms
+ GET /artigos.html 200 in 23ms
+ ✓ Compiled in 154ms

@@ -1503,6 +1503,17 @@ h3 {
   margin-top: 20px;
 }
 
+.article-section-media {
+  margin: 34px 0 0;
+}
+
+.article-section-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
 .article-content blockquote {
   margin: 68px 0 4px;
   border-top: 1px solid var(--line);
@@ -4328,6 +4339,28 @@ h3 {
   color: var(--ivory);
 }
 
+/* The articles hub uses its introduction as a separate section after the hero. */
+.article-hub .article-hub-intro {
+  position: relative;
+  z-index: auto;
+  inset: auto;
+  display: grid;
+  width: min(1120px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 104px) 0 0;
+  color: var(--coffee);
+  text-align: center;
+  justify-items: center;
+}
+
+.story-page .article-hub .article-hub-intro .story-back,
+.story-page .article-hub .article-hub-intro .story-brand,
+.story-page .article-hub .article-hub-intro .story-lead,
+.story-page .article-hub .article-hub-intro h1 {
+  color: var(--coffee);
+  text-shadow: none;
+}
+
 .story-page .story-hero-inner .story-back,
 .story-page .story-hero-inner .story-brand,
 .story-page .story-hero-inner .story-lead {
@@ -4360,5 +4393,10 @@ h3 {
   .story-page .story-hero-inner {
     width: calc(100% - 32px);
     padding: 0 0 52px;
+  }
+
+  .article-hub .article-hub-intro {
+    width: calc(100% - 32px);
+    padding: 52px 0 0;
   }
 }
